@@ -7,18 +7,18 @@ from sklearn.preprocessing import OrdinalEncoder as Encoder
 from sklearn.model_selection import train_test_split as tts
 from keras.layers import Conv1D, Flatten
 from sklearn.preprocessing import MinMaxScaler as Scaler
-
-
-
-import matplotlib.pyplot as plt
-import numpy as np
-
-from IPython import get_ipython
-get_ipython().run_line_magic('matplotlib', 'inline')
+#from keras.saving.saved_model.json_utils import Encoder
 import seaborn as sns
+import matplotlib.pyplot as plt
+import matplotlib.axis as ax
+import numpy as np
+from IPython import get_ipython
 
 
-def create(dataset):
+
+
+
+"""def create(dataset):
 
     dataset.drop(['date'], axis=1, inplace=True)
     print(dataset)
@@ -64,3 +64,4 @@ def create(dataset):
     sns.boxplot(x='state', y='number', data=yearTableState)
     plt.title('İLÇELERE GÖRE YANGIN SAYILARI', fontsize=25)
     plt.show()
+"""
