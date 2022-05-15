@@ -36,13 +36,7 @@ def create(dataset):
 
 
     #
-    # YILLARA GÖRE OLAN YANGIN SAYISI GRİD BOX
-
-
-    st.write("İstanbul şehrinde 1998 ve 2017 yılları arasında gerçekleşen yangınların sayıları gösterilmektedir."
-             "Bu gösterimde, sadece ay ve toplam yangın sayısına odaklanılmıştır."
-             "Hangi yıllarda yangın sayısının artış gösterdiğine dair çıkarım bu grafiğe bakarak yapılabilir.")
-
+    # YILLARA GÖRE OLAN YANGIN SAYISI GRİD BAR
     plt.figure(figsize=(30, 10))
     # plot
     ax = sns.boxplot(x='year', y='number', data=dataset, palette="autumn")
@@ -53,7 +47,14 @@ def create(dataset):
     plt.yticks(fontsize=15)
     plt.legend(fontsize=15)
     #plt.show()
-    st.pyplot(plt)
+    with st.expander("Yıllık yangın Sayısı"):
+        st.write("""
+            İstanbul şehrinde 1998 ve 2017 yılları arasında gerçekleşen yangınların sayıları gösterilmektedir.
+            Bu gösterimde, sadece ay ve toplam yangın sayısına odaklanılmıştır.
+            Hangi yıllarda yangın sayısının artış gösterdiğine dair çıkarım bu grafiğe bakarak yapılabilir.
+        """)
+        st.pyplot(plt)
+
 
 
     # data gruplaştırma : year, state, month
@@ -63,12 +64,6 @@ def create(dataset):
 
 
     # AYLARA GÖRE OLAN YANGIN SAYISI GRİD BOX
-
-    st.write("istanbul'un tüm ilçeleri genelinde ve tüm yıllar için bir gösterim yapılmıştır."
-             "Ay bazlı bu gösterimde, tüm yıllar ve tüm ilçelerdeki veriler gruplanarak, İstanbul genelinde aylık bir yangın tahmin"
-             "çıkarımının görselleştirilmesi hedeflenmiştir. Bu gösterim, gelecekteki yangın tahmininde hangi aylarda yangın önleme ve durdurma çalışmalarına"
-             "ağırlık verilmesi gerektiği kararına etki edecektir.")
-
     plt.figure(figsize=(30, 10))
 
     order_list = ['OCAK', 'SUBAT', 'MART', 'NISAN', 'MAYIS', 'HAZIRAN', 'TEMMUZ', 'AGUSTOS', 'EYLUL', 'EKIM', 'KASIM', 'ARALIK']
@@ -82,20 +77,72 @@ def create(dataset):
     plt.xticks(fontsize=5)
     plt.yticks(fontsize=15)
     #plt.show()
-    st.pyplot(plt)
 
+
+
+
+
+
+
+
+
+
+    with st.expander("Aylık yangın Sayısı"):
+        st.write("""
+            istanbul'un tüm ilçeleri genelinde ve tüm yıllar için bir gösterim yapılmıştır.
+            Ay bazlı bu gösterimde, tüm yıllar ve tüm ilçelerdeki veriler gruplanarak, İstanbul genelinde aylık bir yangın tahmin
+            çıkarımının görselleştirilmesi hedeflenmiştir. Bu gösterim, gelecekteki yangın tahmininde hangi aylarda yangın önleme ve durdurma çalışmalarına
+            ağırlık verilmesi gerektiği kararına etki edecektir.
+        """)
+        st.pyplot(plt)
+
+    st.write()
 
 
     # İLÇELERE GÖRE OLAN YANGIN SAYISI GRİD BOX
-
-    st.write("İlçelerdeki yangınların gerçekleşme sayıları temel alınarak yapılan bu görselleştirme sayesinde, "
-             "gelecek seneler için hangi ilçelerde yangın önlem çalışmalarına ağırlık verilmesi gerektiği kararına "
-             "etki edecek değerler gösterilmiş olur.")
     plt.figure(figsize=(30, 10))
     sns.boxplot(x='state', y='number', data=yearTableState, palette="autumn")
     plt.title('İLÇELERE GÖRE YANGIN SAYILARI', fontsize=25)
     plt.xticks(fontsize=5)
     plt.yticks(fontsize=15)
     #plt.show()
-    st.pyplot(plt)
+    with st.expander("İlçe bazlı yangın sayısı"):
+        st.write("""
+            İlçelerdeki yangınların gerçekleşme sayıları temel alınarak yapılan bu görselleştirme sayesinde, 
+            gelecek seneler için hangi ilçelerde yangın önlem çalışmalarına ağırlık verilmesi gerektiği kararına 
+            etki edecek değerler gösterilmiş olur.
+        """)
+        st.pyplot(plt)
+
+
+
+with st.form("my_form"):
+    col1, col2, col3 = st.columns(3)
+    st.write("Inside the form")
+
+    with col1:
+        st.selectbox(
+            'Hangi ilçe için tahmin yapacaksınız',
+            ('ARNAVUTKOY', 'ATASEHIR', 'BESIKTAS','BEYKOZ','BEYOGLU','CEKMEKOY','CATALCA','ESENYURT','FATIH','KADIKOY'))
+
+    with col2:
+        st.selectbox(
+            'Hangi Saaaaaaaaaaaaaaaaehir için tahmin yapacaksınız',
+            ('Email', 'Home phone', 'Mobile phone'))
+
+    with col3:
+        st.selectbox(
+            'Hangi Sehir için tahminbbbbbb yapacaksınız',
+            ('Email', 'Home phone', 'Mossbile phone'))
+
+
+    # Every form must have a submit button.
+    submitted = st.form_submit_button("Submit")
+    if submitted:
+        st.write( "checkbox", )
+
+
+
+
+
 

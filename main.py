@@ -94,4 +94,11 @@ print(tempSS.shape)
 
 
 temp = pd.DataFrame({'xTestMonth': xTestMonth[:,0], 'xTestState':xTestState[:,0], 'tempSS': tempSS[:,0]})
-print(temp)
+tempSum = temp.groupby(by=['xTestMonth','xTestState','tempSS']).sum().reset_index()
+
+print(tempSum)
+print()
+
+tempCheck = tempSum['tempSS']/(tempSum['tempSS'].sum())
+
+print(tempCheck)
