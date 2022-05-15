@@ -15,6 +15,10 @@ import numpy as np
 from IPython import get_ipython
 from IPython import get_ipython
 import seaborn as sns
+import streamlit as st
+
+
+
 
 
 def create(dataset):
@@ -31,6 +35,7 @@ def create(dataset):
     print("----------------------------------------------------------------------------------")
 
 
+    #
     # YILLARA GÖRE OLAN YANGIN SAYISI GRİD BAR
     plt.figure(figsize=(30, 10))
     # plot
@@ -41,13 +46,14 @@ def create(dataset):
     plt.xticks(fontsize=5)
     plt.yticks(fontsize=15)
     plt.legend(fontsize=15)
-    plt.show()
+    #plt.show()
+    st.pyplot(plt)
 
 
     # data gruplaştırma : year, state, month
     yearTableState = dataset.groupby(by=['year', 'state', 'month']).sum().reset_index()
     print(yearTableState)
-    print("----------------------------------------------------------------------------------")
+
 
 
     # AYLARA GÖRE OLAN YANGIN SAYISI GRİD BOX
@@ -63,8 +69,9 @@ def create(dataset):
     plt.ylabel('YANGIN SAYISI', fontsize=20)
     plt.xticks(fontsize=5)
     plt.yticks(fontsize=15)
-    plt.show()
-    print("----------------------------------------------------------------------------------")
+    #plt.show()
+    st.pyplot(plt)
+
 
 
     # İLÇELERE GÖRE OLAN YANGIN SAYISI GRİD BOX
@@ -73,5 +80,6 @@ def create(dataset):
     plt.title('İLÇELERE GÖRE YANGIN SAYILARI', fontsize=25)
     plt.xticks(fontsize=5)
     plt.yticks(fontsize=15)
-    plt.show()
-    print("----------------------------------------------------------------------------------")
+    #plt.show()
+    st.pyplot(plt)
+

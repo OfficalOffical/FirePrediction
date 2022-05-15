@@ -1,12 +1,20 @@
 from createModel import *
-import streamlit as st
 
-st.write("UYYYYYYYYYYYYYYYYYYYY")
+
+
+
 
 dataset = pd.read_csv('amazon.csv', encoding='unicode_escape', sep=';')
 
+create(dataset)
+
 features = dataset[['state', 'month']]
 targets = dataset['number']
+
+for x in range(len(dataset['number'])):
+    if(dataset['number'][x]<0):
+        print("AAAAAAAA")
+
 
 x_train, x_test, y_train, y_test = tts(features, targets, test_size=0.2,
                                        random_state=42)
@@ -42,10 +50,10 @@ x_test = np.expand_dims(x_test, axis=-1)
 
 model = Sequential([
     keras.Input(shape=(2, 1)),
-    Conv1D(1000, 2),
+    Conv1D(64, 2),
 
-    Dense(128),
-    Conv1D(100, 1),
+    Dense(48),
+    Conv1D(32, 1),
 
     Flatten(),
     Dense(1)
@@ -67,19 +75,35 @@ evScore = model.evaluate(x_test, y_test)
 
 predictions = model.predict(x_test)
 
-print(x_test)
-print(predictions)
+
+
 
 encoder_state.inverse_transform(x_test[0].reshape(-1, 1))
 
-ss.inverse_transform(predictions)
+tempSS = ss.inverse_transform(predictions)
+
+
 
 
 
 x_train = x_train.squeeze(axis= 2)
 x_test = x_test.squeeze(axis= 2)
 
+
+
+
 y_train = ss.inverse_transform(y_train.reshape(-1, 1))
 y_test = ss.inverse_transform(y_test.reshape(-1, 1))
 
-dataset.groupby(['month']).sum()
+xTestState = encoder_state.inverse_transform(x_test[:,0].reshape(-1, 1))
+xTestMonth = encoder_month.inverse_transform(x_test[:,1].reshape(-1, 1))
+
+print(xTestMonth)
+print(xTestState)
+print(tempSS)
+
+
+
+
+keko = dataset.groupby(['month']).sum()
+print(keko)
