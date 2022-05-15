@@ -103,7 +103,7 @@ def create(dataset):
     # İLÇELERE GÖRE OLAN YANGIN SAYISI GRİD BOX
     plt.figure(figsize=(30, 10))
     sns.boxplot(x='state', y='number', data=yearTableState, palette="autumn")
-    plt.title('İLÇELERE GÖRE YANGIN SAYILARI', fontsize=25)
+    plt.title('İLÇELERE GÖRE YANGINLAR', fontsize=25)
     plt.xticks(fontsize=5)
     plt.yticks(fontsize=15)
     #plt.show()

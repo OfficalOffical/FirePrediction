@@ -103,15 +103,19 @@ def tempSumMonthGrid(tempSum):
 
     order_list = ['OCAK', 'SUBAT', 'MART', 'NISAN', 'MAYIS', 'HAZIRAN', 'TEMMUZ', 'AGUSTOS', 'EYLUL', 'EKIM', 'KASIM', 'ARALIK']
     # The plot
-    sns.boxplot(x='month', order=order_list,
-                y='number', data=tempSum, palette="autumn", saturation=1, width=0.9, fliersize=4, linewidth=2)
+    sns.boxplot(x='xTestMonth', order=order_list,
+                y='tempSS', data=tempSum, palette="autumn", saturation=1, width=0.9, fliersize=4, linewidth=2)
 
     plt.title('AYLARA GÖRE BEKLENEN YANGIN ORANLARI', fontsize=25)
     plt.xlabel('AYLAR', fontsize=20)
-    plt.ylabel('YANGIN SAYISI', fontsize=20)
+    plt.ylabel('YANGIN ORANI', fontsize=20)
     plt.xticks(fontsize=5)
     plt.yticks(fontsize=15)
-    #plt.show()
+    plt.show()
+
+    st.write("""
+                 Aylar içerisinde gerçekleşme olasılığı taşıyan yangınların model tarafından hesaplanan beklenme değerleri görselleştirilmiştir.
+            """)
 
 
 def tempSumStateGrid(tempSum):
@@ -119,15 +123,19 @@ def tempSumStateGrid(tempSum):
 
     order_list = ['ARNAVUTKOY', 'ATASEHIR', 'BEYKOZ', 'BEYOGLU', 'CATALCA', 'ESENYURT', 'FATIH', 'KADIKOY', 'KAGITHANE', 'UMRANIYE', 'USKUDAR', 'ZEYTINBURNU']
     # The plot
-    sns.boxplot(x='state', order=order_list,
-                y='number', data=tempSum, palette="autumn", saturation=1, width=0.9, fliersize=4, linewidth=2)
+    sns.boxplot(x='xTestState', order=order_list,
+                y='tempSS', data=tempSum, palette="autumn", saturation=1, width=0.9, fliersize=4, linewidth=2)
 
     plt.title('İLÇELERE GÖRE BEKLENEN YANGIN ORANLARI', fontsize=25)
     plt.xlabel('İLÇELER', fontsize=20)
-    plt.ylabel('YANGIN SAYISI', fontsize=20)
+    plt.ylabel('YANGIN ORANI', fontsize=20)
     plt.xticks(fontsize=5)
     plt.yticks(fontsize=15)
-    #plt.show()
+    plt.show()
+
+    st.write("""
+                İlçelerdeki gelecek yangın oranları, model tarafından üretilen değerler görselleştirilerek gösterilmektedir..
+            """)
 
 
 tempSumMonthGrid(tempSum)
