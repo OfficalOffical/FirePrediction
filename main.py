@@ -26,6 +26,8 @@ dataset = pd.read_csv('amazon.csv', encoding='unicode_escape', sep=';')
 features = dataset[['state', 'month']]
 targets = dataset['number']
 
+create(dataset)
+
 """* catboost regressor"""
 
 
@@ -43,9 +45,15 @@ x_train['month'] = encoder_month.fit_transform(x_train['month'].values.reshape(-
 x_test['state'] = encoder_state.fit_transform(x_test['state'].values.reshape(-1, 1))
 x_test['month'] = encoder_month.fit_transform(x_test['month'].values.reshape(-1, 1))  # String to Int
 
-# encoder_state.inverse_transform(x_train['state'].values.reshape(-1, 1))
+encoder_state.inverse_transform(x_train['state'].values.reshape(-1, 1))
+encoder_state.categories_
 
-# encoder_state.categories_
+
+
+
+
+
+
 
 
 
@@ -108,10 +116,13 @@ evScore = model.evaluate(x_test, y_test)
 predictions = model.predict(x_test)
 
 
-encoder_state.inverse_transform(x_test[0].reshape(-1, 1))
+
+
+x_test = encoder_state.inverse_transform(x_test['state'].reshape(-1, 1))
+print(x_test["state"])
 
 ss.inverse_transform(predictions)
 
 dataset.groupby(['month']).sum()
 
-"""ss.inverse_transform()"""
+ss.inverse_transform()
