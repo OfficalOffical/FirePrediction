@@ -96,9 +96,8 @@ print(tempSS.shape)
 temp = pd.DataFrame({'xTestMonth': xTestMonth[:,0], 'xTestState':xTestState[:,0], 'tempSS': tempSS[:,0]})
 tempSum = temp.groupby(by=['xTestMonth','xTestState','tempSS']).sum().reset_index()
 
-print(tempSum)
-print()
+tempSum['tempSS'] =  tempSum['tempSS']/(tempSum['tempSS'].sum())*100
 
-tempCheck = tempSum['tempSS']/(tempSum['tempSS'].sum())
 
-print(tempCheck)
+
+

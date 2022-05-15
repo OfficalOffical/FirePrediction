@@ -23,6 +23,7 @@ import streamlit as st
 
 def create(dataset):
 
+
     dataset.drop(['date'], axis=1, inplace=True)
     print(dataset)
 
