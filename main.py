@@ -10,7 +10,7 @@ import pandas as pd
 from createModel import *
 from base64 import mainBase
 
-mainBase()
+
 
 dataset = pd.read_csv('amazon.csv', encoding='unicode_escape', sep=';')
 
