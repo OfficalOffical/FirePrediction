@@ -96,7 +96,18 @@ print(tempSS.shape)
 temp = pd.DataFrame({'xTestMonth': xTestMonth[:,0], 'xTestState':xTestState[:,0], 'tempSS': tempSS[:,0]})
 tempSum = temp.groupby(by=['xTestMonth','xTestState','tempSS']).sum().reset_index()
 
+
+
+
 tempSum['tempSS'] = tempSum['tempSS']/(tempSum['tempSS'].sum())*100
+
+tempMean = tempSum['tempSS'].mean()
+tempMax = tempSum['tempSS'].max()
+
+
+with st.sidebar:
+    st.metric(label="En yüksek ihtimalli şehir ve ay", value=tempMax, delta=tempMax- tempMean)
+
 
 def tempSumMonthGrid(tempSum):
     plt.figure(figsize=(30, 10))
@@ -111,11 +122,15 @@ def tempSumMonthGrid(tempSum):
     plt.ylabel('YANGIN ORANI', fontsize=20)
     plt.xticks(fontsize=5)
     plt.yticks(fontsize=15)
-    plt.show()
+    #plt.show()
+    with st.expander("Aylara göre beklenen yangın tahmin oranları"):
+        st.write("""
+            Aylar içerisinde gerçekleşme olasılığı taşıyan yangınların model tarafından hesaplanan beklenme değerleri görselleştirilmiştir.
+        """)
+        st.pyplot(plt)
 
-    st.write("""
-                 Aylar içerisinde gerçekleşme olasılığı taşıyan yangınların model tarafından hesaplanan beklenme değerleri görselleştirilmiştir.
-            """)
+
+
 
 
 def tempSumStateGrid(tempSum):
@@ -131,15 +146,16 @@ def tempSumStateGrid(tempSum):
     plt.ylabel('YANGIN ORANI', fontsize=20)
     plt.xticks(fontsize=5)
     plt.yticks(fontsize=15)
-    plt.show()
+    #plt.show()
+    with st.expander("İlçe bazlı yangın tahmin oranları"):
+        st.write("""
+            İlçelerdeki gelecek yangın oranları, model tarafından üretilen değerler görselleştirilerek gösterilmektedir..
+        """)
+        st.pyplot(plt)
 
-    st.write("""
-                İlçelerdeki gelecek yangın oranları, model tarafından üretilen değerler görselleştirilerek gösterilmektedir..
-            """)
 
 
 tempSumMonthGrid(tempSum)
 tempSumStateGrid(tempSum)
-
 
 

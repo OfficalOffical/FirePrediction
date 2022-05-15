@@ -97,7 +97,7 @@ def create(dataset):
         """)
         st.pyplot(plt)
 
-    st.write()
+
 
 
     # İLÇELERE GÖRE OLAN YANGIN SAYISI GRİD BOX
@@ -132,9 +132,7 @@ with st.form("my_form"):
             ('Email', 'Home phone', 'Mobile phone'))
 
     with col3:
-        st.selectbox(
-            'Hangi Sehir için tahminbbbbbb yapacaksınız',
-            ('Email', 'Home phone', 'Mossbile phone'))
+        st.metric(label="Temperature", value="70 °F", delta="1.2 °F")
 
 
     # Every form must have a submit button.
