@@ -36,7 +36,7 @@ def create(dataset):
     print("----------------------------------------------------------------------------------")
 
 
-    #
+
     # YILLARA GÖRE OLAN YANGIN SAYISI GRİD BAR
     plt.figure(figsize=(30, 10))
     # plot

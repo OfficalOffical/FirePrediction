@@ -96,8 +96,40 @@ print(tempSS.shape)
 temp = pd.DataFrame({'xTestMonth': xTestMonth[:,0], 'xTestState':xTestState[:,0], 'tempSS': tempSS[:,0]})
 tempSum = temp.groupby(by=['xTestMonth','xTestState','tempSS']).sum().reset_index()
 
-tempSum['tempSS'] =  tempSum['tempSS']/(tempSum['tempSS'].sum())*100
+tempSum['tempSS'] = tempSum['tempSS']/(tempSum['tempSS'].sum())*100
+
+def tempSumMonthGrid(tempSum):
+    plt.figure(figsize=(30, 10))
+
+    order_list = ['OCAK', 'SUBAT', 'MART', 'NISAN', 'MAYIS', 'HAZIRAN', 'TEMMUZ', 'AGUSTOS', 'EYLUL', 'EKIM', 'KASIM', 'ARALIK']
+    # The plot
+    sns.boxplot(x='month', order=order_list,
+                y='number', data=tempSum, palette="autumn", saturation=1, width=0.9, fliersize=4, linewidth=2)
+
+    plt.title('AYLARA GÖRE BEKLENEN YANGIN ORANLARI', fontsize=25)
+    plt.xlabel('AYLAR', fontsize=20)
+    plt.ylabel('YANGIN SAYISI', fontsize=20)
+    plt.xticks(fontsize=5)
+    plt.yticks(fontsize=15)
+    #plt.show()
 
 
+def tempSumStateGrid(tempSum):
+    plt.figure(figsize=(30, 10))
 
+    order_list = ['ARNAVUTKOY', 'ATASEHIR', 'BEYKOZ', 'BEYOGLU', 'CATALCA', 'ESENYURT', 'FATIH', 'KADIKOY', 'KAGITHANE', 'UMRANIYE', 'USKUDAR', 'ZEYTINBURNU']
+    # The plot
+    sns.boxplot(x='state', order=order_list,
+                y='number', data=tempSum, palette="autumn", saturation=1, width=0.9, fliersize=4, linewidth=2)
+
+    plt.title('İLÇELERE GÖRE BEKLENEN YANGIN ORANLARI', fontsize=25)
+    plt.xlabel('İLÇELER', fontsize=20)
+    plt.ylabel('YANGIN SAYISI', fontsize=20)
+    plt.xticks(fontsize=5)
+    plt.yticks(fontsize=15)
+    #plt.show()
+
+
+tempSumMonthGrid(tempSum)
+tempSumStateGrid(tempSum)
 
