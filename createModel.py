@@ -36,7 +36,13 @@ def create(dataset):
 
 
     #
-    # YILLARA GÖRE OLAN YANGIN SAYISI GRİD BAR
+    # YILLARA GÖRE OLAN YANGIN SAYISI GRİD BOX
+
+
+    st.write("İstanbul şehrinde 1998 ve 2017 yılları arasında gerçekleşen yangınların sayıları gösterilmektedir."
+             "Bu gösterimde, sadece ay ve toplam yangın sayısına odaklanılmıştır."
+             "Hangi yıllarda yangın sayısının artış gösterdiğine dair çıkarım bu grafiğe bakarak yapılabilir.")
+
     plt.figure(figsize=(30, 10))
     # plot
     ax = sns.boxplot(x='year', y='number', data=dataset, palette="autumn")
@@ -57,6 +63,12 @@ def create(dataset):
 
 
     # AYLARA GÖRE OLAN YANGIN SAYISI GRİD BOX
+
+    st.write("istanbul'un tüm ilçeleri genelinde ve tüm yıllar için bir gösterim yapılmıştır."
+             "Ay bazlı bu gösterimde, tüm yıllar ve tüm ilçelerdeki veriler gruplanarak, İstanbul genelinde aylık bir yangın tahmin"
+             "çıkarımının görselleştirilmesi hedeflenmiştir. Bu gösterim, gelecekteki yangın tahmininde hangi aylarda yangın önleme ve durdurma çalışmalarına"
+             "ağırlık verilmesi gerektiği kararına etki edecektir.")
+
     plt.figure(figsize=(30, 10))
 
     order_list = ['OCAK', 'SUBAT', 'MART', 'NISAN', 'MAYIS', 'HAZIRAN', 'TEMMUZ', 'AGUSTOS', 'EYLUL', 'EKIM', 'KASIM', 'ARALIK']
@@ -75,6 +87,10 @@ def create(dataset):
 
 
     # İLÇELERE GÖRE OLAN YANGIN SAYISI GRİD BOX
+
+    st.write("İlçelerdeki yangınların gerçekleşme sayıları temel alınarak yapılan bu görselleştirme sayesinde, "
+             "gelecek seneler için hangi ilçelerde yangın önlem çalışmalarına ağırlık verilmesi gerektiği kararına "
+             "etki edecek değerler gösterilmiş olur.")
     plt.figure(figsize=(30, 10))
     sns.boxplot(x='state', y='number', data=yearTableState, palette="autumn")
     plt.title('İLÇELERE GÖRE YANGIN SAYILARI', fontsize=25)

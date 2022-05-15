@@ -1,7 +1,6 @@
+import pandas as pd
+
 from createModel import *
-
-
-
 
 
 dataset = pd.read_csv('amazon.csv', encoding='unicode_escape', sep=';')
@@ -41,8 +40,6 @@ y_test = ss.transform(y_test.values.reshape(-1, 1))
 
 
 
-
-
 x_train = np.expand_dims(x_train, axis=-1)
 x_test = np.expand_dims(x_test, axis=-1)
 
@@ -76,20 +73,13 @@ evScore = model.evaluate(x_test, y_test)
 predictions = model.predict(x_test)
 
 
-
-
 encoder_state.inverse_transform(x_test[0].reshape(-1, 1))
 
 tempSS = ss.inverse_transform(predictions)
 
 
-
-
-
 x_train = x_train.squeeze(axis= 2)
 x_test = x_test.squeeze(axis= 2)
-
-
 
 
 y_train = ss.inverse_transform(y_train.reshape(-1, 1))
@@ -98,12 +88,10 @@ y_test = ss.inverse_transform(y_test.reshape(-1, 1))
 xTestState = encoder_state.inverse_transform(x_test[:,0].reshape(-1, 1))
 xTestMonth = encoder_month.inverse_transform(x_test[:,1].reshape(-1, 1))
 
-print(xTestMonth)
-print(xTestState)
-print(tempSS)
+print(xTestMonth.shape)
+print(xTestState.shape)
+print(tempSS.shape)
 
 
-
-
-keko = dataset.groupby(['month']).sum()
-print(keko)
+temp = pd.DataFrame({'xTestMonth': xTestMonth[:,0], 'xTestState':xTestState[:,0], 'tempSS': tempSS[:,0]})
+print(temp)
