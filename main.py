@@ -1,5 +1,12 @@
 import pandas as pd
 
+
+
+
+
+
+
+
 from createModel import *
 
 
@@ -10,9 +17,7 @@ create(dataset)
 features = dataset[['state', 'month']]
 targets = dataset['number']
 
-for x in range(len(dataset['number'])):
-    if(dataset['number'][x]<0):
-        print("AAAAAAAA")
+
 
 
 x_train, x_test, y_train, y_test = tts(features, targets, test_size=0.2,
@@ -65,7 +70,7 @@ opt = adam_v2.Adam(learning_rate=0.0001)
 model.compile(loss=tf.keras.losses.Huber(),
               optimizer=opt,
               metrics=['mse', 'mae'])
-model.fit(x_train, y_train, epochs=2, validation_data=(x_test, y_test),
+model.fit(x_train, y_train, epochs=20, validation_data=(x_test, y_test),
           verbose=2)
 
 evScore = model.evaluate(x_test, y_test)
@@ -157,5 +162,34 @@ def tempSumStateGrid(tempSum):
 
 tempSumMonthGrid(tempSum)
 tempSumStateGrid(tempSum)
+
+with st.form("my_form"):
+    col1, col2, col3 = st.columns(3)
+    tempData = ""
+    tempValue = ""
+    tempLabel = ""
+    with col1:
+        tempStateCol = st.selectbox(
+            'Hangi ilçe için tahmin yapacaksınız',
+            ('ARNAVUTKOY', 'ATASEHIR', 'BEYKOZ', 'BEYOGLU', 'CATALCA', 'ESENYURT', 'FATIH', 'KADIKOY', 'KAGITHANE', 'UMRANIYE', 'USKUDAR', 'ZEYTINBURNU'))
+
+    with col2:
+        tempMonthCol = st.selectbox(
+            'Hangi Saaaaaaaaaaaaaaaaehir için tahmin yapacaksınız',
+            ('OCAK', 'SUBAT', 'MART', 'NISAN', 'MAYIS', 'HAZIRAN', 'TEMMUZ', 'AGUSTOS', 'EYLUL', 'EKIM', 'KASIM', 'ARALIK'))
+
+
+
+    submittedx = st.form_submit_button("Submit")
+    if submittedx:
+        for x in range(len(tempSum['tempSS'])):
+            if(tempSum['xTestState'][x] == tempStateCol and tempSum['xTestMonth'][x] == tempMonthCol ):
+                tempValue = tempSum['tempSS'][x]
+
+        tempData = tempValue-tempMean
+        tempLabel = tempStateCol + " " + tempMonthCol
+
+        with col3:
+            st.metric(label=tempLabel, value=tempValue, delta=tempData)
 
 

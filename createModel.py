@@ -18,9 +18,6 @@ import seaborn as sns
 import streamlit as st
 
 
-
-
-
 def create(dataset):
 
 
@@ -115,30 +112,6 @@ def create(dataset):
         """)
         st.pyplot(plt)
 
-
-
-with st.form("my_form"):
-    col1, col2, col3 = st.columns(3)
-    st.write("Inside the form")
-
-    with col1:
-        st.selectbox(
-            'Hangi ilçe için tahmin yapacaksınız',
-            ('ARNAVUTKOY', 'ATASEHIR', 'BESIKTAS','BEYKOZ','BEYOGLU','CEKMEKOY','CATALCA','ESENYURT','FATIH','KADIKOY'))
-
-    with col2:
-        st.selectbox(
-            'Hangi Saaaaaaaaaaaaaaaaehir için tahmin yapacaksınız',
-            ('Email', 'Home phone', 'Mobile phone'))
-
-    with col3:
-        st.metric(label="Temperature", value="70 °F", delta="1.2 °F")
-
-
-    # Every form must have a submit button.
-    submitted = st.form_submit_button("Submit")
-    if submitted:
-        st.write( "checkbox", )
 
 
 
