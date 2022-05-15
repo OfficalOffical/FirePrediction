@@ -8,7 +8,9 @@ import pandas as pd
 
 
 from createModel import *
-from base64 import mainBase
+from base64Temp import mainBase
+
+
 
 
 
@@ -113,7 +115,7 @@ tempMax = tempSum['tempSS'].max()
 
 
 with st.sidebar:
-    st.metric(label="En yüksek ihtimalli şehir ve ay", value=tempMax, delta=tempMax- tempMean)
+    st.metric(label="En yüksek yangın ihtimalli şehir ve ay", value=tempMax, delta=tempMax- tempMean)
 
 
 def tempSumMonthGrid(tempSum):
@@ -172,12 +174,12 @@ with st.form("my_form"):
     tempLabel = ""
     with col1:
         tempStateCol = st.selectbox(
-            'Hangi ilçe için tahmin yapacaksınız',
+            'Hangi ilçe için tahmin verilerini inceleyeceksiniz',
             ('ARNAVUTKOY', 'ATASEHIR', 'BEYKOZ', 'BEYOGLU', 'CATALCA', 'ESENYURT', 'FATIH', 'KADIKOY', 'KAGITHANE', 'UMRANIYE', 'USKUDAR', 'ZEYTINBURNU'))
 
     with col2:
         tempMonthCol = st.selectbox(
-            'Hangi Saaaaaaaaaaaaaaaaehir için tahmin yapacaksınız',
+            'Hangi ay için tahmin verilerini inceleyeceksiniz',
             ('OCAK', 'SUBAT', 'MART', 'NISAN', 'MAYIS', 'HAZIRAN', 'TEMMUZ', 'AGUSTOS', 'EYLUL', 'EKIM', 'KASIM', 'ARALIK'))
 
 
@@ -194,4 +196,4 @@ with st.form("my_form"):
         with col3:
             st.metric(label=tempLabel, value=tempValue, delta=tempData)
 
-
+mainBase()
