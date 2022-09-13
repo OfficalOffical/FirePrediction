@@ -1,6 +1,6 @@
 # FirePrediction
 
-Fire prediction is an app that predicts the probability of a fire in a given city for each month. In given cities finds the riskiest place and the probability difference from the average. As you can also see on the left-hand side of the photo.
+Fire prediction is an app that predicts the probability of a fire in the given cities for each month. In given cities finds the riskiest place and the probability difference from the average. As you can also see on the left-hand side of the photo.
 
 ![image](https://user-images.githubusercontent.com/18538179/189983017-6fe968c7-7eab-417c-bd78-1cb6646f147a.png)
 
